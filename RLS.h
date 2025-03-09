@@ -34,10 +34,10 @@ public:
      * @return N*1 vector
      */
     Eigen::VectorXf initRegression(const Eigen::MatrixXf& _H, const Eigen::MatrixXf& _Y);
-    Eigen::VectorXf recursiveRegression(const Eigen::MatrixXf& _new_h, const Eigen::MatrixXf& _new_y);
+    Eigen::VectorXf recursiveRegression(const Eigen::RowVectorXf& _new_h, const Eigen::RowVectorXf& _new_y);
 
 private:
-
+    bool is_init_ = false;
     int N_;
     int M_;
     int p_;
@@ -47,8 +47,6 @@ private:
     Eigen::MatrixXf P_;
     Eigen::MatrixXf G_;
     Eigen::MatrixXf theta_;
-    Eigen::MatrixXf P_a_;
-    Eigen::MatrixXf theta_a_;
 
 };
 
