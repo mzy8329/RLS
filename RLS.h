@@ -6,7 +6,7 @@
 
 typedef enum
 {
-    RLS,
+    LS = 0,
     W_RLS,
     EF_RLS,
     WEF_RLS
@@ -15,7 +15,6 @@ typedef enum
 
 /**
  * @brief Rescursive Least Square regression
- * @param _N number of output
  * @param _M number of theta
  * @param _type LS_TYPE_e
  * @param _rho forgetting factor (default 0.99)
@@ -24,7 +23,7 @@ typedef enum
 class RLS
 {
 public:
-    RLS(int _N, int _M, RLS_TYPE_e _type, float _rho = 1.0, int _p = 0);
+    RLS(int _M, RLS_TYPE_e _type, float _rho = 1.0, int _p = 0);
     ~RLS();
 
     /**
@@ -36,12 +35,15 @@ public:
     Eigen::VectorXf initRegression(const Eigen::MatrixXf& _H, const Eigen::MatrixXf& _Y);
     Eigen::VectorXf recursiveRegression(const Eigen::RowVectorXf& _new_h, const Eigen::RowVectorXf& _new_y);
 
-private:
+public:
     bool is_init_ = false;
-    int N_;
+
+private:
     int M_;
+    RLS_TYPE_e type_;
     int p_;
     float rho_;
+    float rho_p_;
     Eigen::MatrixXf H_;
     Eigen::MatrixXf Y_;
     Eigen::MatrixXf P_;
