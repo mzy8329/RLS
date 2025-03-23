@@ -6,8 +6,7 @@
 
 typedef enum
 {
-    LS = 0,
-    W_RLS,
+    W_RLS = 0,
     EF_RLS,
     WEF_RLS
 } RLS_TYPE_e;
@@ -32,8 +31,8 @@ public:
      * @param _Y T*N matrix
      * @return N*1 vector
      */
-    Eigen::VectorXf initRegression(const Eigen::MatrixXf& _H, const Eigen::MatrixXf& _Y);
-    Eigen::VectorXf recursiveRegression(const Eigen::RowVectorXf& _new_h, const Eigen::RowVectorXf& _new_y);
+    Eigen::VectorXd initRegression(const Eigen::MatrixXd& _H, const Eigen::MatrixXd& _Y);
+    Eigen::VectorXd recursiveRegression(const Eigen::RowVectorXd& _new_h, const Eigen::RowVectorXd& _new_y);
 
 public:
     bool is_init_ = false;
@@ -44,13 +43,12 @@ private:
     int p_;
     float rho_;
     float rho_p_;
-    Eigen::MatrixXf H_;
-    Eigen::MatrixXf Y_;
-    Eigen::MatrixXf P_;
-    Eigen::MatrixXf G_;
-    Eigen::MatrixXf theta_;
+    Eigen::MatrixXd H_;
+    Eigen::MatrixXd Y_;
+    Eigen::MatrixXd P_;
+    Eigen::MatrixXd G_;
+    Eigen::MatrixXd theta_;
 
 };
-
 
 #endif // _RLS_H_
