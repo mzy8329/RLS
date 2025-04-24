@@ -16,11 +16,8 @@ RLS::~RLS() {}
 
 Eigen::VectorXd RLS::initRegression(const Eigen::MatrixXd& _H, const Eigen::MatrixXd& _Y)
 {
-    H_.bottomRows(_H.rows()) = _H;
-    Y_.bottomRows(_Y.rows()) = _Y;
-
-    H_.leftCols(M_) = _H.replicate(p_, 1);
-    Y_.leftCols(1) = _Y.replicate(p_, 1);
+    H_ = _H;
+    Y_ = _Y;
 
     if (p_ != 0)
     {
